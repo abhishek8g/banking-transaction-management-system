@@ -1,0 +1,32 @@
+# Environment & Secrets
+.env
+*.env
+
+# Target & Build outputs (Spring Boot)
+target/
+*.jar
+*.war
+*.ear
+*.class
+
+# IDE & Editor files
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# Maven Wrapper binaries
+.mvn/wrapper/maven-wrapper.jar
+
+# ── Frontend (banking-frontend) ──
+banking-frontend/node_modules/
+banking-frontend/dist/
+banking-frontend/.cache/
+banking-frontend/.vite/
+banking-frontend/*.local
