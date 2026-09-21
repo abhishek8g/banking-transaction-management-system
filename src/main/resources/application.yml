@@ -3,19 +3,30 @@ spring:
     name: banking-transaction-management
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:banking_db}
+    # Render provides DATABASE_URL as a full JDBC URL for PostgreSQL
+    # Falls back to individual env vars for local dev
+    url: ${DATABASE_URL:jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:banking_db}}
     username: ${DB_USERNAME:postgres}
     password: ${DB_PASSWORD:postgres}
     driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
 
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
 jwt:
   secret: ${JWT_SECRET:404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970}
   expiration-ms: 86400000 # 24 hours
+
+server:
+  port: ${PORT:8080}
 
 springdoc:
   api-docs:
